@@ -1,8 +1,46 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <script type="text/javascript" src="./script.js">
-</script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL Query Generator</title>
+</head>
+<body>
 
+  <form id="form">
+    <input type="text" id="name" name="name" placeholder="Enter name">
+    <input type="number" id="year" name="year" placeholder="Enter year">
+    <button type="submit" id="button">Submit</button>
+  </form>
+
+  <h3 id="url">https://localhost:8080/</h3>
+
+  <script>
+    const form = document.getElementById("form");
+    const nameInput = document.getElementById("name");
+    const yearInput = document.getElementById("year");
+    const urlDisplay = document.getElementById("url");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let baseUrl = "https://localhost:8080/";
+      let params = [];
+
+      if (nameInput.value) {
+        params.push(`name=${nameInput.value}`);
+      }
+
+      if (yearInput.value) {
+        params.push(`year=${yearInput.value}`);
+      }
+
+      if (params.length > 0) {
+        baseUrl += "?" + params.join("&");
+      }
+
+      urlDisplay.textContent = baseUrl;
+    });
+  </script>
+
+</body>
 </html>
